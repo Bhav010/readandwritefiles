@@ -4,7 +4,14 @@ import csv
 # print(customers_file.read())
 # customers_file.close()
 
-with open("customers.csv", "r") as f:
-    r = csv.reader(f, delimiter=",")
-    for row in r:
-        print(row[1], row[2], "-", row[4])
+with open("customers.csv", "r") as file1:
+    read1 = csv.reader(file1)
+
+    with open("customer_country.csv", "w", newline="") as file2:
+        write1 = csv.writer(file2)
+
+        select_col = [1, 2, 4]
+
+        for row in read1:
+            content = list(row[i] for i in select_col)
+            write1.writerow(content)
